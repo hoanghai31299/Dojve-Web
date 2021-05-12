@@ -1,0 +1,104 @@
+@import "./message.scss";
+@import "./setting.scss";
+.conversation {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  .header {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    border-bottom: $default-border;
+    .room-info {
+      flex: 1;
+      padding: 0 10px;
+      h5 {
+        font-weight: 600;
+        font-size: 18px;
+      }
+      p {
+        font-size: 12px;
+        margin-top: 10px;
+      }
+    }
+  }
+  .more-messages {
+    text-align: center;
+    // border: 1px $color-blue solid;
+    button {
+      width: 100%;
+      color: $color-blue !important;
+    }
+  }
+  .body {
+    padding: 0 20px;
+    margin-top: auto;
+    overflow: auto;
+  }
+  .conversation-action {
+    position: relative;
+    display: flex;
+    padding: 10px 20px 20px 20px;
+    align-items: center;
+    background-color: rgb(36, 36, 36);
+    .message-input {
+      flex: 1;
+      margin: 0 20px;
+      input {
+        all: unset;
+        border-radius: 17px;
+        color: rgb(37, 37, 37);
+        font-size: 14px;
+        width: 100%;
+        background-color: rgb(255, 242, 242);
+        padding: 10px;
+      }
+    }
+    .typing-msg {
+      position: absolute;
+      bottom: 3px;
+      left: 20px;
+      display: flex;
+      align-items: center;
+    }
+    div#wave {
+      margin-left: 20px;
+      border-radius: 10px;
+      border-start-start-radius: 0;
+      .dot {
+        display: inline-block;
+        width: 4px;
+        height: 4px;
+        border-radius: 50%;
+        margin-right: 3px;
+        background: #979797;
+        animation: wave 1.3s linear infinite;
+
+        &:nth-child(2) {
+          animation-delay: -1.1s;
+        }
+
+        &:nth-child(3) {
+          animation-delay: -0.9s;
+        }
+      }
+    }
+    .msg-video {
+      max-width: 500px;
+      img {
+        min-width: 100%;
+      }
+    }
+    @keyframes wave {
+      0%,
+      60%,
+      100% {
+        transform: initial;
+      }
+
+      30% {
+        transform: translateY(-15px);
+      }
+    }
+  }
+}

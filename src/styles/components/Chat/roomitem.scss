@@ -1,0 +1,52 @@
+.room-item.active {
+  background-color: $color-room-active;
+}
+.room-item {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  margin-bottom: 5px;
+  transition: $default-transition;
+
+  .message {
+    flex: 1;
+    padding: 0 20px;
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    justify-content: space-between;
+    h3 {
+      font-weight: bold;
+    }
+    p {
+      display: -webkit-box;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+      margin-top: 5px;
+      font-size: 14px;
+      color: rgb(214, 214, 214);
+      font-weight: 200;
+    }
+  }
+  .timmer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    h3 {
+      font-size: 12px;
+      margin-bottom: 8px;
+    }
+    .new-message.active {
+      background-color: $color-white;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+  }
+}
+.MuiIconButton-root.MuiIconButton-colorPrimary path {
+  color: $color-blue;
+}

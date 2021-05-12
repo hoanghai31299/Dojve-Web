@@ -1,0 +1,17 @@
+.friend-request {
+  padding: 10px 20px;
+  .request-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .MuiIconButton-colorSecondary * {
+      color: #0f0;
+    }
+    .MuiIconButton-colorPrimary * {
+      color: #f00;
+    }
+    h3 {
+      font-size: 1.2rem;
+    }
+  }
+}

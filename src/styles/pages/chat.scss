@@ -1,0 +1,86 @@
+@import "../components/Chat/sidebar.scss";
+@import "../components/Chat/conversation.scss";
+@import "../components/StickerGif/sticker.scss";
+.chat-window {
+  background-color: rgb(36, 36, 36);
+  & * {
+    color: #fff;
+  }
+  .chat-window-container {
+    display: grid;
+    grid-template-columns: 410px 1fr;
+    @media (max-width: 768px) {
+      grid-template-columns: 300px 1fr;
+    }
+    @media (max-width: 650px) {
+      display: block;
+      .sidebar-container.expand {
+        display: block;
+        width: 100vw;
+        height: 100vh;
+        z-index: 5;
+      }
+      .sidebar-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0;
+        background-color: $color-bg-sidebar;
+        overflow: hidden;
+      }
+      .chat-container {
+        .back-to-room {
+          display: block !important;
+        }
+      }
+    }
+    .sidebar-container {
+      flex: 2;
+      height: 100vh;
+      border-right: $default-border;
+    }
+    .popover-btn {
+      display: inline-block;
+    }
+    .chat-container {
+      flex: 8;
+      display: flex;
+      height: 100vh;
+      background-color: $color-black;
+      .back-to-room {
+        position: absolute;
+        display: none;
+      }
+    }
+  }
+}
+.calling-modal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  .MuiAvatar-root.MuiAvatar-circle.MuiAvatar-colorDefault {
+    width: 70px;
+    height: 70px;
+    font-size: 2rem;
+  }
+  > div.calling-btn {
+    > * {
+      margin: 10px;
+    }
+    svg {
+      width: 30px;
+      height: 30px;
+    }
+    .cancel-call {
+      svg {
+        fill: red;
+      }
+    }
+    .accept-call {
+      svg {
+        fill: green;
+      }
+    }
+  }
+}

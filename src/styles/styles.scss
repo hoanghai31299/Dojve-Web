@@ -1,0 +1,16 @@
+@import "base/base";
+@import "base/typography";
+@import "helpers/variables";
+@import "helpers/mixins";
+@import "layouts/header";
+@import "layouts/footer";
+
+@import "pages/login.scss";
+@import "pages/home";
+@import "pages/chat.scss";
+@import "pages/call.scss";
+@import "pages/email.scss";
+
+* {
+  font: $main-font;
+}

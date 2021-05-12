@@ -1,0 +1,15 @@
+.authenticate {
+  padding-top: 40px;
+  display: flex;
+  justify-content: center;
+  p {
+    font-size: 2rem;
+  }
+  .loading-authenticate {
+    display: flex;
+    padding: 20px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+}

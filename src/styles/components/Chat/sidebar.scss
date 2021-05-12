@@ -1,0 +1,155 @@
+@import "./roomitem.scss";
+@import "../SiderBar/FriendRequest.scss";
+div.avatar {
+  position: relative;
+  width: 50px;
+  height: 50px;
+  img {
+    background-color: rgb(238, 238, 238);
+    border-radius: 50%;
+    width: inherit; /* width of container */
+    height: inherit; /* height of container */
+    object-fit: cover;
+    max-width: 100%;
+  }
+}
+
+.avatar.active {
+  &::after {
+    position: absolute;
+    content: "";
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background-color: $color-user-active;
+    border: 2px $color-bg-sidebar solid;
+    right: 1px;
+    bottom: 0;
+    z-index: 2;
+  }
+}
+.avatar.sm {
+  width: 55px;
+  height: 55px;
+}
+.sidebar {
+  padding: 20px 0;
+  overflow: auto;
+  height: 100vh;
+  .header {
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .user-info {
+      display: flex;
+      align-items: center;
+      .user-name {
+        font-family: $main-font;
+        margin-left: 10px;
+        font-weight: 700;
+        font-size: 20px;
+      }
+    }
+  }
+  .sidebar-action {
+    .sidebar-search {
+      position: relative;
+      min-height: 44px;
+      margin: 20px 0 10px 0;
+      .sidebar-search-container {
+        position: absolute;
+        padding: 0 20px;
+        z-index: 10;
+        width: 100%;
+        min-height: 44px;
+      }
+      .sidebar-search-container.active {
+        transition: all 0.3s ease;
+        top: -90px;
+        padding: 20px;
+        background: rgb(94, 94, 94);
+        background: linear-gradient(
+          190deg,
+          rgba(94, 94, 94, 1) 0%,
+          rgba(52, 36, 82, 1) 41%,
+          rgba(69, 69, 69, 1) 100%
+        );
+        height: 100vh;
+        .btn-search {
+          display: none;
+        }
+        .btn-cancel {
+          display: block;
+          float: right;
+        }
+        .sidebar-people {
+          padding: 20px 0;
+        }
+        padding: 10px 20px;
+        .request-item {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          .MuiIconButton-colorSecondary * {
+            color: rgb(162, 145, 236);
+          }
+          .MuiIconButton-colorPrimary * {
+            color: rgb(255, 255, 255);
+          }
+          h3 {
+            font-size: 1.2rem;
+          }
+        }
+      }
+      .btn-search {
+        position: absolute;
+        left: 20px;
+        top: -1px;
+      }
+      .btn-cancel {
+        display: none;
+      }
+      input {
+        &:focus {
+          outline: none;
+        }
+        border: unset;
+        width: 100%;
+        border-radius: 5px;
+        color: $color-text-opacity;
+        display: block;
+        background-color: rgb(231, 231, 231);
+        padding: 13px 0 13px 40px;
+        &::placeholder {
+          font-size: 12px;
+          font-weight: 200;
+        }
+      }
+    }
+  }
+  .grouppadd {
+    position: absolute;
+    bottom: 20px;
+    left: 331px;
+    .popover-btn {
+      button {
+        background-color: #fff;
+      }
+    }
+
+    svg {
+      fill: $color-blue;
+    }
+  }
+
+  .MuiTabs-root {
+    background-color: $color-bg-sidebar;
+  }
+}
+.form-groupadd {
+  display: flex;
+  flex-direction: column;
+  min-height: 300px;
+  min-width: 500px;
+}

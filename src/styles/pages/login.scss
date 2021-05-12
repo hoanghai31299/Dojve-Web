@@ -1,0 +1,173 @@
+.login {
+  font-family: $main-font;
+  background-image: linear-gradient(
+    to bottom right,
+    $color-blue-2,
+    $color-blue-3
+  );
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  .login-container {
+    display: flex;
+    width: 80%;
+    border-radius: 20px;
+    box-shadow: 0px 0px 20px -1px rgba(0, 0, 0, 0.2);
+    background: $color-white;
+    height: 90vh;
+    max-height: 90vh;
+    .login-left {
+      flex: 4;
+      padding: 40px;
+      .logo {
+        font-size: 50px;
+        font-weight: 700;
+        color: $color-blue;
+        span {
+          color: $color-light-blue;
+        }
+      }
+      .login-text {
+        h3 {
+          margin: 30px 0;
+          font-size: 30px;
+          font-weight: 600;
+          margin-bottom: 10px;
+        }
+        h5 {
+          color: $color-grey;
+          font-size: 14px;
+        }
+      }
+      .signin-form {
+        margin-top: 10px;
+        .form-item {
+          margin: 20px 0;
+          h5 {
+            font-size: 13px;
+            font-weight: 600;
+          }
+          input {
+            border-radius: 5px;
+            outline: 0;
+            margin-top: 5px;
+            max-width: 100%;
+            transition: all 0.3s ease;
+            width: 100%;
+            border: rgba(0, 0, 0, 0.2) 0.5px solid;
+            padding: 8px 15px;
+            &:focus {
+              border: $color-blue 0.5px solid;
+            }
+            &::placeholder {
+              color: $color-grey;
+              font-family: $main-font;
+              font-weight: 500;
+            }
+          }
+        }
+        button {
+          cursor: pointer;
+          border: none;
+          color: $color-white;
+          outline: none;
+          border-radius: 5px;
+          font-size: 17px;
+          font-weight: 700;
+          background-color: $color-blue;
+          width: 100%;
+          transition: all 0.1s ease;
+          padding: 7px;
+          text-align: center;
+          &:hover {
+            transform: translateY(-5px);
+            box-shadow: 0px 6px 10px -1px rgba(0, 0, 0, 0.2);
+            background-color: $color-blue-2;
+          }
+          &:active {
+            transform: translateY(0);
+            box-shadow: unset;
+          }
+        }
+      }
+      .login-action {
+        margin-top: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        a {
+          font-weight: 600px;
+          display: block;
+        }
+        & > div {
+          margin-top: 20px;
+          display: flex;
+          width: 100%;
+          align-items: center;
+          justify-content: space-around;
+          @media (max-width: $break-point-tablet) {
+            flex-direction: column;
+          }
+          a.signup-btn {
+            padding: 7px 10px;
+            border-radius: 15px;
+            border: $color-blue solid 2px;
+            text-decoration: none;
+            text-align: center;
+            transition: $default-transition;
+            &:hover {
+              color: $color-white;
+              background-color: $color-blue;
+            }
+          }
+          span {
+            margin: 5px;
+          }
+          .google-sign {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            font-size: 12px;
+            text-decoration: none;
+            text-decoration: underline;
+            img {
+              margin-right: 10px;
+              width: 20px;
+            }
+            &:hover {
+              color: $color-blue;
+            }
+          }
+        }
+      }
+    }
+    .login-right {
+      padding: 40px;
+      flex: 8;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      h2 {
+        color: $color-blue;
+        font-size: 30px;
+        font-weight: 750;
+      }
+      img {
+        max-width: 100%;
+      }
+      @media (max-width: $break-point-tablet-small) {
+        display: none;
+      }
+    }
+    @media (max-width: $break-point-tablet) {
+      .login-left {
+        flex: 6;
+      }
+      .login-right {
+        flex: 6;
+      }
+    }
+  }
+}

@@ -1,0 +1,49 @@
+.settings {
+  .settings-avatar {
+    display: flex;
+    justify-content: center;
+    .MuiAvatar-root {
+      width: 120px;
+      height: 120px;
+      font-size: 4.2rem;
+    }
+  }
+  .room-info {
+    margin-top: 20px;
+    * {
+      font-size: 1.4rem;
+      text-align: center;
+    }
+  }
+  .settings-theme {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: rgb(230, 230, 230);
+    padding: 20px;
+    border-radius: 15px;
+    .theme-item-container {
+      text-align: center;
+      span {
+        font-size: 0.9rem;
+      }
+    }
+    .theme-item {
+      width: 40px;
+      margin: 0px 10px;
+      height: 40px;
+      border-radius: 50%;
+      cursor: pointer;
+      border: 1px solid rgb(177, 177, 177);
+      transition: all 0.2s ease-in-out;
+      box-shadow: 10px 29px 66px -12px rgba(120, 120, 120, 1);
+    }
+  }
+  .member-group-list {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    & > div:nth-child(2) {
+      margin-left: 10px;
+    }
+  }
+}
