@@ -13,6 +13,7 @@ import axios from "./utils/axios";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 function HomePage() {
+  const dispatch = useDispatch();
   const [redirect, setRedirect] = useState(false);
   const link = window.location.href;
   const email = link.indexOf("email") > -1;
