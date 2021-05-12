@@ -1,5 +1,5 @@
 {
-  "name": "madala",
+  "name": "dojve",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -37,6 +37,7 @@
     "web-vitals": "^0.2.4"
   },
   "scripts": {
+    "dev": "set DEV_SERVER_URL = http://localhost:5000 && react-scripts start",
     "start": "react-scripts start",
     "build": "CI=false react-scripts build",
     "test": "react-scripts test",

@@ -1,3 +1,4 @@
+import { Spin } from "antd";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "../utils/axios";
@@ -7,6 +8,7 @@ function Signup() {
     password: "",
     name: "",
   });
+  const [loading, setLoading] = useState(false);
   const [validate, setValidate] = useState(true);
   const [msg, setMsg] = useState(false);
   const onInputChange = (e) => {
@@ -21,9 +23,11 @@ function Signup() {
   };
   const signup = (e) => {
     e.preventDefault();
+    setLoading(true);
     axios.post("/auth/signup", newAccount).then((res) => {
       if (res.data.error) {
         console.log(res.data.error);
+        setLoading(false);
       } else {
         setNewAccout({});
       }
@@ -32,6 +36,11 @@ function Signup() {
   };
   return (
     <div className="login-form">
+      {loading && (
+        <div className="auth-loading">
+          <Spin size="large" />
+        </div>
+      )}
       <p className="login-text">
         <h3>Sign up.</h3>
         <h5>Sign up to start your adventure</h5>
@@ -81,14 +90,15 @@ function Signup() {
             opacity: validate ? "0.5" : "1",
           }}
           disabled={validate}
-          onClick={signup}>
+          onClick={signup}
+        >
           Sign up
         </button>
       </form>
       <div className="login-action">
         <span>Have account already?</span>
 
-        <Link className="signup-btn" to="/">
+        <Link className="signup-btn" to="/auth">
           Login now
         </Link>
       </div>

@@ -5,12 +5,14 @@ import axios from "../utils/axios";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../redux/features/user";
 import { connectSocket } from "../../redux/features/socketClient";
+import { Spin } from "antd";
 function LoginForm() {
   const dispatch = useDispatch();
   const [account, setAccount] = useState({
     email: "",
     password: "",
   });
+  const [loading, setLoading] = useState(false);
   // const [error, setError] = useState(false);
   const history = useHistory();
   const onInputChange = (e) => {
@@ -18,6 +20,7 @@ function LoginForm() {
   };
   const onSignin = (e) => {
     e.preventDefault();
+    setLoading(true);
     axios.post("/auth/signin", account).then(async (res) => {
       const { data } = res;
       if (!data.error) {
@@ -25,6 +28,7 @@ function LoginForm() {
         user.token = data.token;
         dispatch(setUser(user));
         dispatch(connectSocket(data.token));
+        setLoading(false);
         history.push("/chat/welcome");
       } else {
         console.log(data);
@@ -33,6 +37,11 @@ function LoginForm() {
   };
   return (
     <div className="login-form">
+      {loading && (
+        <div className="auth-loading">
+          <Spin size="large" />
+        </div>
+      )}
       <div className="login-text">
         <h3>Log in.</h3>
         <h5>

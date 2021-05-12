@@ -1,7 +1,8 @@
 import axios from "axios";
-
+import { serverURL } from "../../config";
+console.log(serverURL());
 const intance = axios.create({
-  baseURL: "https://dojve-server.herokuapp.com",
+  baseURL: serverURL(),
   withCredentials: true,
 });
 

@@ -32,7 +32,7 @@ function Chat() {
       socket.on("videocall", (data) => {
         switch (data.action) {
           case "RECEIVE":
-            // audioRef.current.play();
+            console.log("co cuoc goi den!!1");
             setCalling({
               status: true,
               id: data.roomId,

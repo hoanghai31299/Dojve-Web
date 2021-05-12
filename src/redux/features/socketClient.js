@@ -1,11 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 import io from "socket.io-client";
+import { serverURL } from "../../config";
 export const socketSlice = createSlice({
   name: "socket",
   initialState: {},
   reducers: {
     connectSocket: (state, action) => {
-      state.current = io.connect(`https://dojve-server.herokuapp.com`, {
+      state.current = io.connect(serverURL(), {
         query: {
           token: action.payload,
         },

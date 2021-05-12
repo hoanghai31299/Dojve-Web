@@ -44,7 +44,7 @@ function Call() {
   const { roomId } = useParams();
   const query = useQuery();
   const token = query.get("t");
-  const cameraInit = query.get("video");
+  const cameraInit = query.get("video") || false;
   const [participants, setParticipants] = useState([]);
   const [room, setRoom] = useState(null);
   const [expand, setExpand] = useState(false);
@@ -84,7 +84,7 @@ function Call() {
       connect(token, {
         name: roomId,
         audio: true,
-        video: !!cameraInit,
+        video: cameraInit === "true",
       }).then(
         (room) => {
           setRoom(room);

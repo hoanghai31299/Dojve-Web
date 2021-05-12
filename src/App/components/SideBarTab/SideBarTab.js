@@ -84,6 +84,9 @@ function SideBarTab({ user, setExpand }) {
         dispatch(addRoom(data.room));
       }
     });
+    return () => {
+      socket?.off();
+    };
   }, [dispatch, socket, user]);
   return (
     <div className="sidebar-tab">

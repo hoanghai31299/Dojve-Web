@@ -1,6 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import {
-  Button,
   CircularProgress,
   IconButton,
   LinearProgress,
@@ -25,7 +24,7 @@ import { message, Spin, Upload } from "antd";
 import Drawer from "../MaterialUi/Drawer";
 import RoomSetting from "./RoomSetting";
 import { defaultTheme } from "../../utils/common";
-import { sortRoom } from "../../../redux/features/rooms";
+import { originURL, serverURL } from "../../../config";
 
 function Conversation({ roomId }) {
   const [inputMessage, setInputMessage] = useState("");
@@ -69,7 +68,7 @@ function Conversation({ roomId }) {
           );
         }
         window.open(
-          `http://localhost:3000/call/${roomId}?t=${data.token}&video=${config.video}`,
+          `${originURL()}/call/${roomId}?t=${data.token}&video=${config.video}`,
           "VIDEO CALL",
           "toolbar=0,status=0,width=1000,height=700"
         );
@@ -345,7 +344,7 @@ function Conversation({ roomId }) {
           <div className="button">
             <Upload
               name="image"
-              action="http://localhost:5000/message/upImage"
+              action={`${serverURL()}/message/upImage`}
               withCredentials={true}
               showUploadList={false}
               onChange={onChangeUpload}
