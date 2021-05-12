@@ -12,9 +12,7 @@ import { useDispatch } from "react-redux";
 import axios from "./utils/axios";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import Cookies from "universal-cookie";
 function HomePage() {
-  const dispatch = useDispatch();
   const [redirect, setRedirect] = useState(false);
   const link = window.location.href;
   const email = link.indexOf("email") > -1;
@@ -25,9 +23,6 @@ function HomePage() {
         let user = data.user;
         user.token = data.token;
         dispatch(setUser(user));
-        const cookies = new Cookies();
-        cookies.set("token", data.token, { httpOnly: true });
-        cookies.set("refreshToken", data.refreshToken, { httpOnly: true });
         dispatch(connectSocket(data.token));
       } else {
         setRedirect(true);
