@@ -4,7 +4,6 @@ import {
   Redirect,
   Route,
   Switch,
-  useLocation,
 } from "react-router-dom";
 import routers from "./router";
 import { setUser } from "../redux/features/user";
@@ -16,7 +15,6 @@ import "slick-carousel/slick/slick-theme.css";
 function HomePage() {
   const dispatch = useDispatch();
   const [redirect, setRedirect] = useState(false);
-  console.log(window.location.href);
   const link = window.location.href;
   const email = link.indexOf("email") > -1;
   useEffect(() => {

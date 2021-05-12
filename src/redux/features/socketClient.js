@@ -5,7 +5,7 @@ export const socketSlice = createSlice({
   initialState: {},
   reducers: {
     connectSocket: (state, action) => {
-      state.current = io.connect(`http://localhost:5000`, {
+      state.current = io.connect(`https://dojve.vercel.app`, {
         query: {
           token: action.payload,
         },
