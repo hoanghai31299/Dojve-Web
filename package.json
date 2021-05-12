@@ -32,6 +32,7 @@
     "socket.io-client": "^4.0.0",
     "styled-components": "^5.2.3",
     "twilio-video": "^2.13.1",
+    "universal-cookie": "^4.0.4",
     "video-react": "^0.14.1",
     "web-vitals": "^0.2.4"
   },
