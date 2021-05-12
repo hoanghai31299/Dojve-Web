@@ -26,8 +26,8 @@ function HomePage() {
         user.token = data.token;
         dispatch(setUser(user));
         const cookies = new Cookies();
-        cookies.set("token", data.token);
-        cookies.set("refreshToken", data.refreshToken);
+        cookies.set("token", data.token, { httpOnly: true });
+        cookies.set("refreshToken", data.refreshToken, { httpOnly: true });
         dispatch(connectSocket(data.token));
       } else {
         setRedirect(true);
