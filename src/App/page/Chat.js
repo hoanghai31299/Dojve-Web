@@ -11,6 +11,7 @@ import { Modal } from "antd";
 import { Call, CallEnd } from "@material-ui/icons";
 import Ringring from "../../assets/images/avengerreng.mp3";
 import AvatarBadge from "../components/MaterialUi/AvatarBadge";
+import { originURL } from "../../config";
 function Chat() {
   const { roomId } = useParams();
   const [side, setSide] = useState(false);
@@ -54,7 +55,7 @@ function Chat() {
       const { data } = res;
       setCalling({ ...calling, status: false });
       window.open(
-        `http://localhost:3000/call/${roomId}?t=${data.token}&video=${calling.video}`,
+        `${originURL()}/call/${roomId}?t=${data.token}&video=${calling.video}`,
         "VIDEO CALL",
         "toolbar=0,status=0,width=1000,height=700"
       );

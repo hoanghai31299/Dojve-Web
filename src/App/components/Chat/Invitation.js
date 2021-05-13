@@ -8,6 +8,7 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Cover from "../../../assets/images/invitation.png";
 import axios from "../../utils/axios";
+import { originURL } from "../../../config";
 const useStyles = makeStyles({
   root: {
     maxWidth: 345,
@@ -33,7 +34,7 @@ export default function Invitation({ mine, sender, sid }) {
     axios.get(`/call/joinRoom?sid=${sid}`).then((res) => {
       const { data } = res;
       window.open(
-        `http://localhost:3000/call/${"vuive"}?t=${data.token}&video=false`,
+        `${originURL()}/call/${"vuive"}?t=${data.token}&video=false`,
         "VIDEO CALL",
         "toolbar=0,status=0,width=1000,height=700"
       );
