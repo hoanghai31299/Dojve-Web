@@ -32,7 +32,9 @@
   }
   .body {
     padding: 0 20px;
+    position: relative;
     margin-top: auto;
+    height: 100%;
     overflow: auto;
   }
   .conversation-action {
@@ -100,5 +102,20 @@
         transform: translateY(-15px);
       }
     }
+  }
+  .loading-messages {
+    background-image: linear-gradient(
+      to bottom right,
+      $color-blue-2,
+      $color-blue-3
+    );
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 0;
+    bottom: 0;
   }
 }

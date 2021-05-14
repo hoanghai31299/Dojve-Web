@@ -46,6 +46,9 @@
     color: white;
   }
 }
+.button-log:hover {
+  background-color: #2174bd;
+}
 @media only screen and (max-width: 1024px) {
   .content-right {
     gap: 5%;

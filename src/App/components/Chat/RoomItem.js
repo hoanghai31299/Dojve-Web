@@ -36,6 +36,9 @@ function RoomItem({ room, active, userId }) {
           break;
       }
     });
+    return () => {
+      socket.off("messages");
+    };
   }, [_id, socket, userId, room]);
 
   const other = members.filter((user) => user._id !== userId);

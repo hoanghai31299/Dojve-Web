@@ -1,4 +1,5 @@
-import { Spin } from "antd";
+import { InsertEmoticon, SentimentVeryDissatisfied } from "@material-ui/icons";
+import { Modal, Spin } from "antd";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "../utils/axios";
@@ -10,7 +11,11 @@ function Signup() {
   });
   const [loading, setLoading] = useState(false);
   const [validate, setValidate] = useState(true);
-  const [msg, setMsg] = useState(false);
+  const [msg, setMsg] = useState({
+    status: false,
+    msg: "",
+    success: false,
+  });
   const onInputChange = (e) => {
     setNewAccout((old) => {
       return { ...old, [e.target.name]: e.target.value };
@@ -24,18 +29,44 @@ function Signup() {
   const signup = (e) => {
     e.preventDefault();
     setLoading(true);
-    axios.post("/auth/signup", newAccount).then((res) => {
-      if (res.data.error) {
-        console.log(res.data.error);
-        setLoading(false);
+    axios.post("/auth/signup", newAccount).then(({ data }) => {
+      if (!data.error && data.error !== undefined) {
+        setMsg({
+          msg: data.message.toUpperCase(),
+          success: true,
+          status: true,
+        });
       } else {
-        setNewAccout({});
+        setMsg({
+          msg: data.message.toUpperCase(),
+          success: false,
+          status: true,
+        });
       }
-      setMsg(res.data.message);
+      setLoading(false);
     });
   };
   return (
     <div className="login-form">
+      <Modal
+        visible={msg.status}
+        footer={null}
+        onCancel={() => setMsg({ ...msg, status: false })}
+        style={{ textAlign: "center" }}
+      >
+        {msg.success && (
+          <InsertEmoticon
+            style={{ width: "50px", height: "50px", fill: "green" }}
+          />
+        )}
+        {!msg.success && (
+          <SentimentVeryDissatisfied
+            style={{ width: "50px", height: "50px", fill: "red" }}
+          />
+        )}
+        <p>{msg.msg}</p>
+        {!msg.success && <p>PLEASE TRY AGAIN!</p>}
+      </Modal>
       {loading && (
         <div className="auth-loading">
           <Spin size="large" />
@@ -44,7 +75,6 @@ function Signup() {
       <p className="login-text">
         <h3>Sign up.</h3>
         <h5>Sign up to start your adventure</h5>
-        {msg && <h5>{msg}</h5>}
       </p>
       <form className="signin-form">
         <div className="form-item">

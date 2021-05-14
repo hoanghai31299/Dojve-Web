@@ -85,7 +85,7 @@ function SideBarTab({ user, setExpand }) {
       }
     });
     return () => {
-      socket?.off();
+      socket?.off(["user-online", "user-offline", user._id]);
     };
   }, [dispatch, socket, user]);
   return (

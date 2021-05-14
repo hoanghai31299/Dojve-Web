@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { setUser } from "../../redux/features/user";
 import { connectSocket } from "../../redux/features/socketClient";
 import { Spin } from "antd";
+import Modal from "antd/lib/modal/Modal";
 function LoginForm() {
   const dispatch = useDispatch();
   const [account, setAccount] = useState({
@@ -13,7 +14,10 @@ function LoginForm() {
     password: "",
   });
   const [loading, setLoading] = useState(false);
-  // const [error, setError] = useState(false);
+  const [error, setError] = useState({
+    status: false,
+    msg: "",
+  });
   const history = useHistory();
   const onInputChange = (e) => {
     setAccount({ ...account, [e.target.type]: e.target.value });
@@ -23,7 +27,7 @@ function LoginForm() {
     setLoading(true);
     axios.post("/auth/signin", account).then(async (res) => {
       const { data } = res;
-      if (!data.error) {
+      if (!data.error && data.error !== undefined) {
         let user = data.user;
         user.token = data.token;
         dispatch(setUser(user));
@@ -32,11 +36,20 @@ function LoginForm() {
         history.push("/chat/welcome");
       } else {
         console.log(data);
+        setLoading(false);
+        setError({ status: true, msg: data.message });
       }
     });
   };
   return (
     <div className="login-form">
+      <Modal
+        visible={error.status}
+        footer={null}
+        onCancel={() => setError({ status: false, msg: "" })}
+      >
+        <p>{error.msg}</p>
+      </Modal>
       {loading && (
         <div className="auth-loading">
           <Spin size="large" />

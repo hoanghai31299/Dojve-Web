@@ -46,6 +46,9 @@ function Chat() {
             break;
         }
       });
+    return () => {
+      socket?.off("videocall");
+    };
   }, [socket, user]);
   //receive video call
   const receiveVideoCall = () => {

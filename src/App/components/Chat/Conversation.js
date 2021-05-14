@@ -40,6 +40,7 @@ function Conversation({ roomId }) {
   const [loadingUpImage, setloadingUpImage] = useState(false);
   const [openSetting, setOpenSetting] = useState(false);
   const [loadingCall, setLoadingCall] = useState(false);
+  const [loadingMessage, setLoadingMessage] = useState(false);
   useEffect(() => {
     setRoomIdC(roomId);
   }, [roomId]);
@@ -86,7 +87,7 @@ function Conversation({ roomId }) {
   scrollToBottom();
   useEffect(() => {
     scrollToBottom();
-  }, [messages, typing]);
+  }, [messages, loadingMessage]);
   const socketListenerCallback = useCallback(() => {
     socket.on("messages", (data) => {
       switch (data.action) {
@@ -137,7 +138,7 @@ function Conversation({ roomId }) {
   //socket on messages
   useEffect(() => {
     socketListenerCallback();
-    return () => socket.off();
+    return () => socket?.off("messages");
   }, [socketListenerCallback, socket]);
   const sendAMessage = (type, content, to = roomId) => {
     const sendMessage = {
@@ -184,12 +185,17 @@ function Conversation({ roomId }) {
   };
   //get messages of the room
   useEffect(() => {
+    setLoadingMessage(true);
     if (roomId) {
       axios.get(`/message/getMessages/${roomId}`).then((res) => {
         const { data } = res;
-        if (!data.error) {
+        if (!data.error && data.error !== undefined) {
           setMessages(data.messages);
-        } else console.log(data);
+          setLoadingMessage(false);
+        } else {
+          console.log(data);
+          setLoadingMessage(false);
+        }
       });
       // getMessageRoom(roomId, 1, 0, setMessages);
     }
@@ -319,14 +325,20 @@ function Conversation({ roomId }) {
             backgroundColor: room.current?.theme?.bgc || defaultTheme.bgc,
           }}
         >
-          {messages.map((msg, i) => (
-            <Message
-              theme={room.current?.theme || defaultTheme}
-              key={i}
-              messages={msg.messages}
-              mine={msg.senderId === user._id}
-            />
-          ))}
+          {loadingMessage ? (
+            <div className="loading-messages">
+              <Spin size="large" />
+            </div>
+          ) : (
+            messages.map((msg, i) => (
+              <Message
+                theme={room.current?.theme || defaultTheme}
+                key={i}
+                messages={msg.messages}
+                mine={msg.senderId === user._id}
+              />
+            ))
+          )}
 
           <div ref={messagesEndRef} />
         </div>
