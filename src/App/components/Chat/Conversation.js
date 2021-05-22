@@ -84,7 +84,6 @@ function Conversation({ roomId }) {
     if (messagesEndRef.current)
       messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
   };
-  scrollToBottom();
   useEffect(() => {
     scrollToBottom();
   }, [messages, loadingMessage]);
@@ -258,6 +257,20 @@ function Conversation({ roomId }) {
       } else message.error("Something wrong :( please retry later");
     }
   };
+  const handleOnSendClick = () => {
+    sendAMessage(0, inputMessage, roomId, user._id);
+    setInputMessage("");
+    socket.emit(
+      "messages",
+      {
+        action: "SEND_DONE_TYPING",
+        to: roomId,
+      },
+      (r) => {
+        if (r) console.log(r);
+      }
+    );
+  };
   if (room)
     return (
       <div className="conversation">
@@ -388,7 +401,7 @@ function Conversation({ roomId }) {
           </div>
 
           <div className="send-btn">
-            <IconButton>
+            <IconButton onClick={handleOnSendClick}>
               <Send />
             </IconButton>
           </div>

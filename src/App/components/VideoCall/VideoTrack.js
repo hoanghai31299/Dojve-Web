@@ -4,10 +4,10 @@ function VideoTrack({ videoTrack }) {
   const videoRef = useRef();
   useEffect(() => {
     if (videoTrack) {
-      videoRef.current.load();
-      videoTrack.attach(videoRef.current);
+      videoRef.current?.load();
+      videoTrack.attach && videoTrack.attach(videoRef.current);
       return () => {
-        videoTrack.detach();
+        videoTrack.detach && videoTrack.detach();
       };
     }
   }, [videoTrack]);

@@ -29,8 +29,8 @@ function isChrome() {
   return "chrome" in window;
 }
 function isFirefox() {
-  var mediaSourceSupport = !!navigator.mediaDevices.getSupportedConstraints()
-    .mediaSource;
+  var mediaSourceSupport =
+    !!navigator.mediaDevices.getSupportedConstraints().mediaSource;
   const regex = /Firefox(d )/;
   var matchData = navigator.userAgent.match(regex);
   var firefoxVersion = 0;
@@ -51,11 +51,65 @@ const defaultTheme = {
 const themes = [
   defaultTheme,
   {
-    bgc: "#ffffff",
-    color: "#000000",
+    bgc: "#000000",
+    color: "#FFFFFF",
+    myTextColor: "#FFFFFF",
+    textColor: "#ffffff",
+    myTextBgc: "#F47A5D",
+    textBgc: "#363636",
+    name: "pinky",
+  },
+  {
+    bgc: "#000000",
+    color: "#FFFFFF",
+    myTextColor: "#ffffff",
+    textColor: "#ffffff",
+    myTextBgc: "#5E007E",
+    textBgc: "#363636",
+    name: "purple",
+  },
+  {
+    bgc: "#000000",
+    color: "#FFFFFF",
+    myTextColor: "#ffffff",
+    textColor: "#ffffff",
+    myTextBgc: "#6EDF00",
+    textBgc: "#363636",
+    name: "green",
+  },
+  {
+    bgc: "#000000",
+    color: "#FFFFFF",
+    myTextColor: "#ffffff",
+    textColor: "#ffffff",
+    myTextBgc: "#A797FF",
+    textBgc: "#363636",
+    name: "perfect blue",
+  },
+  {
+    bgc: "#000000",
+    color: "#FFFFFF",
+    myTextColor: "#ffffff",
+    textColor: "#ffffff",
+    myTextBgc: "#FF311E",
+    textBgc: "#363636",
+    name: "heat",
+  },
+  {
+    bgc: "#000000",
+    color: "#FFFFFF",
+    myTextColor: "#AA3232",
+    textColor: "#ffffff",
+    myTextBgc: "#FF311E",
+    textBgc: "#363636",
+    name: "redly",
+  },
+  {
+    bgc: "#000000",
+    color: "#FFFFFF",
     myTextColor: "#000000",
     textColor: "#ffffff",
-    myTextBgc: "#dddddd",
+    myTextBgc: "#FFFFFF",
     textBgc: "#363636",
     name: "white",
   },

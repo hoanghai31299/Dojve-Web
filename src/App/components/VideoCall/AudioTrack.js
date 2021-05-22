@@ -4,9 +4,9 @@ function AudioTrack({ audioTrack }) {
   const audioRef = useRef();
   useEffect(() => {
     if (audioTrack) {
-      audioTrack.attach(audioRef.current);
+      audioTrack.attach && audioTrack.attach(audioRef.current);
       return () => {
-        audioTrack.detach();
+        audioTrack.detach && audioTrack.detach();
       };
     }
   }, [audioTrack]);

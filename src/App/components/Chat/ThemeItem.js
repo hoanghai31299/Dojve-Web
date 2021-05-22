@@ -7,7 +7,7 @@ function ThemeItem({ theme, handleChangeTheme }) {
       <Tooltip title={`Change theme to ${theme.name}`}>
         <div
           onClick={handleChangeTheme}
-          style={{ backgroundColor: theme.bgc }}
+          style={{ backgroundColor: theme.myTextBgc }}
           className="theme-item"
         ></div>
       </Tooltip>

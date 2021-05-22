@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
+import { sortRoom } from "../../../redux/features/rooms";
 import { msToTime } from "../../utils/common";
 import AvatarBadge from "../MaterialUi/AvatarBadge";
 function RoomItem({ room, active, userId }) {
   const history = useHistory();
   const socket = useSelector((state) => state.socket.current);
+  const dispatch = useDispatch();
   useEffect(() => {
     socket.emit("join", { _id: room._id });
   }, [room._id, socket]);
@@ -20,26 +22,25 @@ function RoomItem({ room, active, userId }) {
     };
   const [last, setLast] = useState(lastMessage);
   useEffect(() => {
-    socket.on("messages", ({ action, message }) => {
+    socket.on("roomMessage", ({ action, message }) => {
       switch (action) {
         case "RECEIVE":
           if (message.to === _id) {
-            console.log("message", message);
-            const sender = room.members.find(
-              (m) => message.sender?._id === m._id
-            );
+            const sender = members.find((m) => message.sender?._id === m._id);
             const before = sender._id === userId ? "You: " : `${sender.name}: `;
             setLast({ ...message, content: before + message.content });
+            dispatch(
+              sortRoom({
+                _id,
+              })
+            );
           }
           break;
         default:
           break;
       }
     });
-    return () => {
-      socket.off("messages");
-    };
-  }, [_id, socket, userId, room]);
+  }, [_id, socket, userId, members, dispatch]);
 
   const other = members.filter((user) => user._id !== userId);
   const roomName = name ? name : other[0].name;

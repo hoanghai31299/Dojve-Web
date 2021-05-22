@@ -31,12 +31,11 @@ export const roomSlide = createSlice({
       });
     },
     sortRoom: (state, action) => {
-      console.log("alo");
-      state.rooms.sort((a, b) => {
-        const time1 = new Date(a);
-        const time2 = new Date(b);
-        return time1.getTime() - time2.getTime();
-      });
+      const roomId = action.payload._id;
+      const room = state.rooms.find((r) => r._id === roomId);
+      const rooms = [...state.rooms];
+      const filter = rooms.filter((r) => r._id !== roomId);
+      state.rooms = [room, ...filter];
     },
   },
 });

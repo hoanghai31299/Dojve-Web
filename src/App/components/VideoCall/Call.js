@@ -55,11 +55,6 @@ function Call() {
   const remoteParticipants = participants.map((participant) => (
     <Participant key={participant.sid} participant={participant} />
   ));
-  const gridRemoteParticipants = participants.map((participant) => (
-    <Grid item xs key={participant.sid}>
-      <Participant participant={participant} />
-    </Grid>
-  ));
 
   useEffect(() => {
     const participantConnected = (participant) => {
@@ -231,9 +226,7 @@ function Call() {
             !gridView ? (
               <Slider {...settings}>{remoteParticipants}</Slider>
             ) : (
-              <Grid container spacing={3}>
-                {gridRemoteParticipants}
-              </Grid>
+              <div class="grid-participant">{remoteParticipants}</div>
             )
           ) : (
             <div className="inform">

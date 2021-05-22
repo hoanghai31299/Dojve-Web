@@ -42,8 +42,10 @@
       justify-content: space-between;
       padding: 10px 0;
       align-items: center;
-      svg {
-        fill: white !important;
+      .room-action {
+        svg {
+          fill: currentColor !important;
+        }
       }
       h3 {
         opacity: 0;
@@ -162,8 +164,12 @@
     }
   }
   .participant-video.grid {
-    display: grid;
-    grid-template-columns: 50% 50%;
+    & video:nth-child(2) {
+      width: 200px;
+      position: absolute;
+      top: 10px;
+      left: 10px;
+    }
   }
   .inform {
     position: absolute;
@@ -181,6 +187,17 @@
     }
     50% {
       opacity: 1;
+    }
+  }
+  .grid-participant {
+    display: grid;
+    grid-template-columns: repeat(5, 20%);
+    grid-template-columns: repeat(4, 25%);
+    .participant-video {
+      video {
+        max-width: 100% !important;
+        max-height: 100% !important;
+      }
     }
   }
 }
