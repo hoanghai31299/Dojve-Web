@@ -82,6 +82,7 @@ function GroupAdd() {
     return axios.post("/rooms", group).then(({ data }) => {
       if (data.room) {
         dispatch(addRoom(data.room));
+        message.success(`The group has been created. Join now!!`);
         socket.emit("friends", {
           action: "ADD_GROUP",
           room: data.room,

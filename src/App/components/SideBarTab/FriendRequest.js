@@ -10,6 +10,7 @@ function FriendRequest({ invites, socket }) {
   const dispatch = useDispatch();
   const acceptRequest = (_id) => {
     dispatch(deleteRequest(_id));
+    message.info("You're friend now, click to chat!");
     socket.emit(
       "friends",
       {

@@ -1,6 +1,5 @@
 // import { LinearProgress } from "@material-ui/core";
 import { Avatar } from "@material-ui/core";
-import { message } from "antd";
 import React, { useState, useEffect } from "react";
 import { getFirstLetter } from "../../utils/common";
 import AudioTrack from "./AudioTrack";

@@ -8,7 +8,7 @@ import {
   LocalVideoTrack,
 } from "twilio-video";
 import Participant from "./Participant";
-import { Fab, Grid, IconButton, Tooltip } from "@material-ui/core";
+import { Fab, IconButton, Tooltip } from "@material-ui/core";
 import {
   PanoramaWideAngle,
   AppsOutlined,
