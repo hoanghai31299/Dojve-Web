@@ -154,7 +154,6 @@ function Conversation({ roomId }) {
     const lastMessage = { ...messages[messages.length - 1] };
     if (user._id + "" === lastMessage.senderId + "") {
       setMessages((cur) => {
-        console.log(cur[cur.length - 1]);
         return [
           ...cur.slice(0, cur.length - 1),
           {
@@ -248,13 +247,24 @@ function Conversation({ roomId }) {
   };
   const onChangeUpload = (upload) => {
     const file = upload.file;
+    console.log("file response:", file.response);
     if (file.status !== "done") setloadingUpImage(true);
     else {
-      setloadingUpImage(false);
-      if (!file.response.error) {
-        const type = file.type.includes("image") ? 3 : 4;
+      if (!file.response?.error) {
+        setloadingUpImage(false);
+        const fileType = file.type;
+        const type = fileType.includes("image")
+          ? 3
+          : fileType.includes("video")
+          ? 4
+          : 6;
+        console.log(type);
         sendAMessage(type, file.response.image_url);
-      } else message.error("Something wrong :( please retry later");
+      } else {
+        message.error("Something wrong :( please retry later");
+        message.error(file.response?.error?.message);
+        setloadingUpImage(false);
+      }
     }
   };
   const handleOnSendClick = () => {
@@ -369,6 +379,7 @@ function Conversation({ roomId }) {
           <div className="button">
             <Upload
               name="image"
+              accept="image/png, image/*, video/*"
               action={`${serverURL()}/message/upImage`}
               withCredentials={true}
               showUploadList={false}

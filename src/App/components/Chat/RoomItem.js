@@ -17,7 +17,8 @@ function RoomItem({ room, active, userId }) {
     members.find((mem) => mem.status > 0 && mem._id !== userId) !== undefined;
   if (!lastMessage)
     lastMessage = {
-      content: "Click to start chat...",
+      type: 0,
+      content: "LET SAY HELLO TO EVERYONE.",
       createdAt: "",
     };
   const [last, setLast] = useState(lastMessage);
@@ -63,11 +64,11 @@ function RoomItem({ room, active, userId }) {
       )}
       <div className="message">
         <h3>{roomName}</h3>
-        <p>{last.type !== 0 ? "Send an attachment" : last.content}</p>
+        {last && <p>{last.type !== 0 ? "Send an attachment" : last.content}</p>}
+        {!last && <p>SAY HELLO TO EVERYONE</p>}
       </div>
       <div className="timmer">
-        <h3>{msToTime(last.createdAt)}</h3>
-        <div className="new-message"></div>
+        {last.createdAt && <h3>{msToTime(last.createdAt)}</h3>}
       </div>
     </div>
   );

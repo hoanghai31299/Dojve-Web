@@ -77,19 +77,20 @@ function GroupAdd() {
   };
   const createNewRoom = () => {
     if (!group.name) return message.error("Please enter your group name");
-    if (!group.members > 0)
+    if (group.members.length < 2)
       return message.error("Please add your room's members");
-    return axios.post("/rooms", group).then(({ data }) => {
-      if (data.room) {
-        dispatch(addRoom(data.room));
-        message.success(`The group has been created. Join now!!`);
-        socket.emit("friends", {
-          action: "ADD_GROUP",
-          room: data.room,
-          to: group.members,
-        });
-      }
-    });
+    else
+      return axios.post("/rooms", group).then(({ data }) => {
+        if (data.room) {
+          dispatch(addRoom(data.room));
+          message.success(`The group has been created. Join now!!`);
+          socket.emit("friends", {
+            action: "ADD_GROUP",
+            room: data.room,
+            to: group.members,
+          });
+        }
+      });
   };
   return (
     <Card>

@@ -18,6 +18,10 @@ function MessageContent({ message, mine, color }) {
             sender={message.sender}
             sid={message.content}
           />
+        ) : message.type === 6 ? (
+          <a target="_blank" rel="noreferrer" href={message.content}>
+            Download file
+          </a>
         ) : (
           <Image src={message.content} className="gif" alt="message-img" />
         )

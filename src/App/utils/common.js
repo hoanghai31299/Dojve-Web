@@ -12,7 +12,7 @@ function getFirstLetter(str) {
   try {
     return str.match(/[A-Z]/g).join("");
   } catch (err) {
-    return "";
+    return "D";
   }
 }
 const colorArr = [
