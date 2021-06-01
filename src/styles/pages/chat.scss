@@ -84,3 +84,38 @@
     }
   }
 }
+.promt-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  span {
+    font-size: 1.3rem;
+  }
+}
+.loading-user {
+  width: 100%;
+  height: 100%;
+}
+.emoji-picker {
+  position: absolute;
+  right: -20px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.emoji-list {
+  position: absolute;
+  bottom: calc(100% + 20px);
+  z-index: 100;
+  right: 0;
+  svg {
+    transition: all 0.3s ease;
+  }
+  // aside.emoji-picker-react {
+  //   width: 300px;
+  // }
+  .emoji-picker-react .emoji-group:before {
+    font-size: 12px;
+  }
+}

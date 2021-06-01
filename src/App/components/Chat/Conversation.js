@@ -12,6 +12,7 @@ import {
   Gif as GifIcon,
   InsertDriveFile,
   Send,
+  EmojiEmotions,
 } from "@material-ui/icons";
 import AvatarBadge from "../MaterialUi/AvatarBadge";
 import Message from "./Message";
@@ -25,10 +26,10 @@ import Drawer from "../MaterialUi/Drawer";
 import RoomSetting from "./RoomSetting";
 import { defaultTheme } from "../../utils/common";
 import { originURL, serverURL } from "../../../config";
+import EmojiPicker from "emoji-picker-react";
 
 function Conversation({ roomId }) {
   const [inputMessage, setInputMessage] = useState("");
-
   const socket = useSelector((state) => state.socket.current);
   const user = useSelector((state) => state.user.current);
   const rooms = useSelector((state) => state.rooms.rooms);
@@ -41,6 +42,8 @@ function Conversation({ roomId }) {
   const [openSetting, setOpenSetting] = useState(false);
   const [loadingCall, setLoadingCall] = useState(false);
   const [loadingMessage, setLoadingMessage] = useState(false);
+  const [openEmoji, setOpenEmoji] = useState(false);
+  const emojiRef = React.useRef();
   useEffect(() => {
     setRoomIdC(roomId);
   }, [roomId]);
@@ -281,9 +284,17 @@ function Conversation({ roomId }) {
       }
     );
   };
+  const handleClickOutside = (event) => {
+    if (emojiRef.current && !emojiRef.current.contains(event.target)) {
+      setOpenEmoji(false);
+    }
+  };
+  const onEmojiClick = (event, emojiObject) => {
+    setInputMessage((input) => input + emojiObject.emoji);
+  };
   if (room)
     return (
-      <div className="conversation">
+      <div className="conversation" onClick={handleClickOutside}>
         <Drawer
           title={
             room.partner.length === 1 ? room.partner[0].name : room.current.name
@@ -409,11 +420,32 @@ function Conversation({ roomId }) {
               type="text"
               placeholder="Typing a message"
             />
+            <div className="emoji-picker">
+              <IconButton onClick={() => setOpenEmoji(!openEmoji)}>
+                <EmojiEmotions
+                  style={{ fill: openEmoji ? "rgb(106, 44, 216)" : "#343434" }}
+                />
+              </IconButton>
+            </div>
+            {openEmoji && (
+              <div className="emoji-list" ref={emojiRef}>
+                <EmojiPicker
+                  onEmojiClick={onEmojiClick}
+                  disableSkinTonePicker={true}
+                  groupVisibility={{ recently_used: false }}
+                />
+              </div>
+            )}
           </div>
 
           <div className="send-btn">
-            <IconButton onClick={handleOnSendClick}>
-              <Send />
+            <IconButton
+              disabled={inputMessage.length < 1}
+              onClick={handleOnSendClick}
+            >
+              <Send
+                style={{ fill: inputMessage.length < 1 ? "#464646" : "white" }}
+              />
             </IconButton>
           </div>
         </div>

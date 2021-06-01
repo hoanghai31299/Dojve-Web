@@ -35,7 +35,9 @@ function SidebarPeople() {
         {people.map((user) => {
           return (
             <div key={user._id} className="request-item">
-              <Avatar src={user.avatar}>{getFirstLetter(user.name)}</Avatar>
+              <Avatar src={user.avatar}>
+                {getFirstLetter(user.name || "😀")}
+              </Avatar>
               <h3>{user.name}</h3>
               <div className="rq-btn">
                 <Button

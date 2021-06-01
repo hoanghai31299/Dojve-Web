@@ -70,7 +70,7 @@ function Chat() {
     setCalling({ ...calling, status: false });
   };
 
-  if (!user.name || !socket) return <Skeleton width={1000} height={1000} />;
+  if (!user.name || !socket) return <Skeleton className="loading-user" />;
   return (
     <div className="chat-window">
       <div className="chat-window-container">
@@ -86,6 +86,12 @@ function Chat() {
             </IconButton>
           </div>
           {roomId !== "welcome" && <Conversation user={user} roomId={roomId} />}
+          {roomId === "welcome" && (
+            <div className="promt-text">
+              <span>😅😆😅😅😄</span>
+              <span>Choose a room or add more friend to start chat</span>
+            </div>
+          )}
         </div>
       </div>
       <Modal

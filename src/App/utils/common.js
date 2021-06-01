@@ -8,11 +8,12 @@ function msToTime(date) {
   }
 }
 
-function getFirstLetter(str) {
+function getFirstLetter(str = "😀") {
   try {
-    return str.match(/[A-Z]/g).join("");
+    if (str === null) return "😀";
+    return str.substr(0, 2).toUpperCase();
   } catch (err) {
-    return "D";
+    return str[0];
   }
 }
 const colorArr = [

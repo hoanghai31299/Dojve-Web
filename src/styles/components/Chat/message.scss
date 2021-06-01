@@ -67,6 +67,18 @@
       img.gif {
         width: unset;
         max-width: 400px;
+        z-index: 1;
+        @media only screen and (max-width: $break-point-tablet) {
+          max-width: 80vw;
+        }
+      }
+      .msg-video {
+        width: unset;
+        max-width: 400px;
+        z-index: 1;
+        @media only screen and (max-width: $break-point-tablet) {
+          max-width: 80vw;
+        }
       }
     }
   }
@@ -74,11 +86,14 @@
 .message-item.mine {
   justify-content: flex-end;
   .message-item-content {
+    .message-info {
+      text-align: right !important;
+    }
     .message-content {
       align-items: flex-end;
       margin: 2px 0;
-      .message-info {
-        text-align: right;
+      .ant-image {
+        max-width: 80%;
       }
       .message-text {
         display: flex;
