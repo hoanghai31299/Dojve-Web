@@ -301,7 +301,9 @@ function Conversation({ roomId }) {
           }
           toggleDrawer={setOpenSetting}
           drawer={openSetting}
-          children={<RoomSetting room={room} />}
+          children={
+            <RoomSetting onClose={() => setOpenSetting(false)} room={room} />
+          }
         />
         <div className="header">
           {room.partner.length === 1 ? (

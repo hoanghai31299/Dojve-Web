@@ -49,4 +49,10 @@
       margin-left: 10px;
     }
   }
+  .btn-close {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 90909;
+  }
 }

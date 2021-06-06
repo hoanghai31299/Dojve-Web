@@ -6,7 +6,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { changeTheme } from "../../../redux/features/rooms";
 import { message, Row } from "antd";
 import axios from "../../utils/axios";
-function RoomSetting({ room }) {
+import { IconButton } from "@material-ui/core";
+import { Close } from "@material-ui/icons";
+function RoomSetting({ room, onClose }) {
   const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.user.current);
   const handleChangeTheme = (theme) => {
@@ -82,6 +84,11 @@ function RoomSetting({ room }) {
           );
         })}
       </div>
+      <span className="btn-close">
+        <IconButton onClick={onClose}>
+          <Close />
+        </IconButton>
+      </span>
     </div>
   );
 }

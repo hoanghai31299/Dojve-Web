@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Logo from "../../assets/images/dojve.svg";
+import HomeImage from "../../assets/images/hp.png";
 function HomePage() {
   const user = useSelector((state) => state.user.current);
   const chatLink = "/chat/welcome";
@@ -33,11 +34,7 @@ function HomePage() {
             }
           </div>
           <div className="content-right">
-            <img
-              width="100%"
-              alt="img-banner"
-              src="https://scontent.fdad3-1.fna.fbcdn.net/v/t39.8562-6/120973513_338186077283942_8148888802958728934_n.png?_nc_cat=1&ccb=1-3&_nc_sid=6825c5&_nc_ohc=AL7hveKxZrsAX9ahxiZ&_nc_ht=scontent.fdad3-1.fna&oh=60c9cc09f2478672f3c291155f660bd3&oe=60BC5827"
-            />
+            <img width="100%" alt="img-banner" src={HomeImage} />
           </div>
         </div>
       </div>
