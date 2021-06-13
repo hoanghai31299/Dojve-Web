@@ -89,11 +89,6 @@ function LoginForm() {
           <Link className="signup-btn" to={`/auth/signup`}>
             Sign up now
           </Link>
-          <span>or</span>
-          <div className="google-sign">
-            <img src={googleSVG} alt="google" />
-            Log in with Google
-          </div>
         </div>
       </div>
     </div>

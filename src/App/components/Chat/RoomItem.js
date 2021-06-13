@@ -42,7 +42,6 @@ function RoomItem({ room, active, userId }) {
       }
     });
   }, [_id, socket, userId, members, dispatch]);
-
   const other = members.filter((user) => user._id !== userId);
   const roomName = name ? name : other[0].name;
   const onClickRoom = () => {
