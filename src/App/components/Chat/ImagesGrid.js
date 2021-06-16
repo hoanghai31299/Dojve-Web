@@ -18,12 +18,11 @@ function ImagesGrid({ room }) {
   }, [room]);
   return (
     <div className="images-room">
-      {!images && (
+      {!images ? (
         <div className="loading-images">
           <Spin />
         </div>
-      )}
-      {images?.length ? (
+      ) : images && images?.length ? (
         images.map((message, i) => {
           if (message.type === 4)
             return (
