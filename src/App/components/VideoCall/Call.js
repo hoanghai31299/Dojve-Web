@@ -205,7 +205,7 @@ function Call() {
       <div className={expand ? "room expand" : "room"}>
         <div className="icon-out">
           <IconButton onClick={() => setExpand(!expand)}>
-            <PanoramaHorizontal />
+            <PanoramaHorizontal style={{ fill: "white" }} />
           </IconButton>
         </div>
 
@@ -216,7 +216,7 @@ function Call() {
           <h3>Vegeta</h3>
           <div className="header-btn">
             <IconButton onClick={() => setExpand(!expand)}>
-              <PanoramaWideAngle />
+              <PanoramaWideAngle style={{ fill: "white" }} />
             </IconButton>
           </div>
         </div>

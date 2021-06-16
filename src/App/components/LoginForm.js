@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
-import googleSVG from "../../assets/images/google-icon.svg";
 import axios from "../utils/axios";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../redux/features/user";

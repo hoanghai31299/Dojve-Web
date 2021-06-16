@@ -8,6 +8,7 @@ import { message, Row } from "antd";
 import axios from "../../utils/axios";
 import { IconButton } from "@material-ui/core";
 import { Close } from "@material-ui/icons";
+import ImagesGrid from "./ImagesGrid";
 function RoomSetting({ room, onClose }) {
   const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.user.current);
@@ -20,6 +21,7 @@ function RoomSetting({ room, onClose }) {
       theme: JSON.stringify(theme),
     });
   };
+
   return (
     <div className="settings">
       <div className="settings-header">
@@ -84,6 +86,8 @@ function RoomSetting({ room, onClose }) {
           );
         })}
       </div>
+      <h4>Images</h4>
+      <ImagesGrid room={room} />
       <span className="btn-close">
         <IconButton onClick={onClose}>
           <Close />

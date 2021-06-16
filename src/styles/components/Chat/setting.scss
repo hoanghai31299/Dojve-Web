@@ -55,4 +55,14 @@
     right: 20px;
     z-index: 90909;
   }
+  h4 {
+    margin-top: 20px;
+  }
+  .images-room {
+    max-height: 400px;
+    overflow-y: scroll;
+    * {
+      max-width: 100%;
+    }
+  }
 }

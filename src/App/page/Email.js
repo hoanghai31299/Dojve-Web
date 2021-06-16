@@ -8,12 +8,20 @@ function Email() {
   const [loading, setLoading] = useState(true);
   const [message, setMessage] = useState("");
   useEffect(() => {
-    axios.get(`/auth/verify/${token}`).then(({ data }) => {
-      setLoading(false);
-      if (data.error !== undefined && !data.error) {
-        setMessage("Verified sucess!!! Welcome");
-      } else setMessage("Faild to verified!! Please try again");
-    });
+    axios
+      .get(`/auth/verify/${token}`)
+      .then(({ data }) => {
+        setLoading(false);
+        if (data.error !== undefined && !data.error) {
+          setMessage("Verified sucess!!! Welcome");
+        } else {
+          setMessage("Faild to verified!! Please try again");
+        }
+      })
+      .catch((error) => {
+        setLoading(false);
+        setMessage("Faild to verified!! Please try again");
+      });
   }, [token]);
   return (
     <div className="authenticate">

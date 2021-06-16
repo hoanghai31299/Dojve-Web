@@ -1,5 +1,5 @@
 import { InsertEmoticon, SentimentVeryDissatisfied } from "@material-ui/icons";
-import { Modal, Spin } from "antd";
+import { message, Modal, Spin } from "antd";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "../utils/axios";
@@ -8,9 +8,9 @@ function Signup() {
     email: "",
     password: "",
     name: "",
+    retype: "",
   });
   const [loading, setLoading] = useState(false);
-  const [validate, setValidate] = useState(true);
   const [msg, setMsg] = useState({
     status: false,
     msg: "",
@@ -21,14 +21,22 @@ function Signup() {
       return { ...old, [e.target.name]: e.target.value };
     });
   };
-  const validatePassword = (e) => {
-    if (e.target.value === newAccount.password) {
-      setValidate(false);
-    } else setValidate(true);
+  const validateNewAccount = () => {
+    const { email, password, name, retype } = newAccount;
+    const re =
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return (
+      re.test(String(email).toLowerCase()) &&
+      password.length > 0 &&
+      name.length > 0 &&
+      retype === password &&
+      password.length >= 6
+    );
   };
   const signup = (e) => {
     e.preventDefault();
     setLoading(true);
+    if (!validateNewAccount()) message.error("Input is not valid!");
     axios.post("/auth/signup", newAccount).then(({ data }) => {
       if (!data.error && data.error !== undefined) {
         setMsg({
@@ -110,16 +118,17 @@ function Signup() {
         <div className="form-item">
           <h5>Enter your password again</h5>
           <input
-            onChange={validatePassword}
+            name="retype"
+            onChange={onInputChange}
             type="password"
             placeholder="make sure of this password"
           />
         </div>
         <button
           style={{
-            opacity: validate ? "0.5" : "1",
+            opacity: !validateNewAccount() ? "0.5" : "1",
           }}
-          disabled={validate}
+          disabled={!validateNewAccount()}
           onClick={signup}
         >
           Sign up

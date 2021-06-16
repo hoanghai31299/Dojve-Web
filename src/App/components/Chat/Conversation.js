@@ -250,7 +250,6 @@ function Conversation({ roomId }) {
   };
   const onChangeUpload = (upload) => {
     const file = upload.file;
-    console.log("file response:", file.response);
     if (file.status !== "done") setloadingUpImage(true);
     else {
       if (!file.response?.error) {
@@ -261,7 +260,6 @@ function Conversation({ roomId }) {
           : fileType.includes("video")
           ? 4
           : 6;
-        console.log(type);
         sendAMessage(type, file.response.image_url);
       } else {
         message.error("Something wrong :( please retry later");
@@ -340,18 +338,33 @@ function Conversation({ roomId }) {
           <div className="room-action">
             {!loadingCall && (
               <IconButton onClick={() => openVideoCall({ video: true })}>
-                <Videocam />
+                <Videocam
+                  style={{
+                    fill:
+                      room.current?.theme?.myTextBgc || defaultTheme.myTextBgc,
+                  }}
+                />
               </IconButton>
             )}
             {loadingCall && <Spin />}
             {!loadingCall && (
               <IconButton onClick={() => openVideoCall({ video: false })}>
-                <Call />
+                <Call
+                  style={{
+                    fill:
+                      room.current?.theme?.myTextBgc || defaultTheme.myTextBgc,
+                  }}
+                />
               </IconButton>
             )}
             {loadingCall && <Spin />}
             <IconButton onClick={() => setOpenSetting(!openSetting)}>
-              <MoreVert />
+              <MoreVert
+                style={{
+                  fill:
+                    room.current?.theme?.myTextBgc || defaultTheme.myTextBgc,
+                }}
+              />
             </IconButton>
           </div>
         </div>
@@ -400,17 +413,41 @@ function Conversation({ roomId }) {
             >
               {!loadingUpImage ? (
                 <IconButton>
-                  <Image />
+                  <Image
+                    style={{
+                      fill:
+                        room.current?.theme?.myTextBgc ||
+                        defaultTheme.myTextBgc,
+                    }}
+                  />
                 </IconButton>
               ) : (
                 <CircularProgress style={{ width: "18px", height: "18px" }} />
               )}
             </Upload>
 
-            <SimplePopover icon={<InsertDriveFile />}>
+            <SimplePopover
+              icon={
+                <InsertDriveFile
+                  style={{
+                    fill:
+                      room.current?.theme?.myTextBgc || defaultTheme.myTextBgc,
+                  }}
+                />
+              }
+            >
               <Sticker sendAMessage={sendAMessage} />
             </SimplePopover>
-            <SimplePopover icon={<GifIcon />}>
+            <SimplePopover
+              icon={
+                <GifIcon
+                  style={{
+                    fill:
+                      room.current?.theme?.myTextBgc || defaultTheme.myTextBgc,
+                  }}
+                />
+              }
+            >
               <Gif sendAMessage={sendAMessage} />
             </SimplePopover>
           </div>
